@@ -1,0 +1,23 @@
+{
+  "name": "petersen-feature",
+  "version": "1.0.0",
+  "description": "echo # petersen-feature # petersen-feature",
+  "main": "index.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrewsuperlegit/petersen-feature.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andrewsuperlegit/petersen-feature/issues"
+  },
+  "homepage": "https://github.com/andrewsuperlegit/petersen-feature#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "jasmine": "^3.6.1"
+  }
+}
