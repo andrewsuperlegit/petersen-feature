@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "echo # petersen-feature # petersen-feature",
   "main": "index.js",
-  "scripts": {
+    "scripts": {
+    "start": "nodemon --exec jasmine",
     "test": "jasmine"
   },
   "repository": {
@@ -18,6 +19,7 @@
   "homepage": "https://github.com/andrewsuperlegit/petersen-feature#readme",
   "dependencies": {},
   "devDependencies": {
-    "jasmine": "^3.6.1"
+    "jasmine": "^3.6.1",
+    "jasmine-spec-reporter": "^6.0.0"
   }
 }
