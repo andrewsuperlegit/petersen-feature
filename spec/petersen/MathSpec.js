@@ -7,17 +7,16 @@
 */
 
 const CONSTANTS = {
-  base: (input) => input / 32
   // 1 - 6 feet
-, small: (input)=> CONSTANTS.base(input) * 1.75
+  small: (input)=> input * 1.75
   // 7-15 feet
-, medium: (input)=> CONSTANTS.base(input) * 1.5
+, medium: (input)=> input * 1.5
   // 16-23
-, large: (input)=> CONSTANTS.base(input) * 1.25
+, large: (input)=> input * 1.25
   // 24 -31
-, xl: (input)=> CONSTANTS.base(input) * 1.1
+, xl: (input)=> input * 1.1
   // 32 +
-, xxl: (input)=> CONSTANTS.base(input)
+, xxl: (input)=> input / 32
 };
 
 const SQUAREFOOTAGE = {
@@ -76,8 +75,32 @@ fdescribe('petersen', ()=>{
     describe("returns price per sheet", ()=>{
       // small
       it(" * 1.75 if smaller than 7", ()=>{
-        expect(CALCULATION.getPriceBreak(70, 0)).toBe();
+        expect(CALCULATION.getPriceBreak(70, 0)).toBe(17.5);
+        expect(CALCULATION.getPriceBreak(70, 1)).toBe(17.5);
+        expect(CALCULATION.getPriceBreak(70, 6.999)).toBe(17.5);
       });
+      it(" * 1.5 if gte 7 and lt 16", ()=>{
+        expect(CALCULATION.getPriceBreak(10, 7)).toBe(15);
+        expect(CALCULATION.getPriceBreak(10, 10)).toBe(15);
+        expect(CALCULATION.getPriceBreak(10, 15.999)).toBe(15);
+      });
+      it(" * 1.25 if gte 16 and lt 24", ()=>{
+        expect(CALCULATION.getPriceBreak(10, 16)).toBe(12.5);
+        expect(CALCULATION.getPriceBreak(10, 20)).toBe(12.5);
+        expect(CALCULATION.getPriceBreak(10, 23.9)).toBe(12.5);
+      });
+      it(" * 1.25 if gte 24 and lt 32", ()=>{
+        expect(CALCULATION.getPriceBreak(10, 24)).toBe(11);
+        expect(CALCULATION.getPriceBreak(10, 29)).toBe(11);
+        expect(CALCULATION.getPriceBreak(10, 31.999)).toBe(11);
+      });
+
+      it(" /32 if gte 32", ()=>{
+        expect(CALCULATION.getPriceBreak(10, 32)).toBe(15);
+        expect(CALCULATION.getPriceBreak(10, 50)).toBe(15);
+        expect(CALCULATION.getPriceBreak(10, 10000000000000)).toBe(15);
+      });
+
     });
   });
 });
